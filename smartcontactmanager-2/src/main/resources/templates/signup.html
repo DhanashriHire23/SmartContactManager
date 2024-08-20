@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 offset-md-2">
+					<div class="my-card mt-2">
+					
+					<div th:if="${session.message}" th:classappend="${session.message.type}" class="alert " role="alert">
+                   <p class="text-center" th:text="${session.message.content}"></p>
+                     </div>
+                     <!-- <th:block th:text="${#session.removeAttribute('message')}"></th:block> -->
+					
+					<div class="container text-center">
+					<img style="width:80px"  src="" th:src="@{/img/membership.png}" alt="" />
+					</div>
+					
+						<h1 class="text-center">SignUp Here!!</h1>
+
+						<form novalidate action="" th:action="@{/do_register}" method="post" th:object="${user}" >
+							
+							<!-- Name Field -->
+							<div class="mb-3">
+							
+							<label for="name_field" >Your Name</label>
+							
+							 <input 
+							 name="name"
+							 type="text"   
+							 class="form-control"
+							 th:classappend="${#fields.hasErrors('name') ? 'is-invalid':' '}"
+							id="name_field" 
+							placeholder="Enter Here"
+							th:value="${user.name}"
+							required>
+							
+							
+							<div th:each="e : ${#fields.errors('name')}" th:text="${e}"
+							id="validationServer03Feedback" class="invalid-feedback">
+							</div>
+							
+							
+							</div>
+							
+							<!-- Email Field -->
+							<div class="mb-3">
+							
+							<label for="email_field" >Your Email</label>
+							
+							 <input 
+							 name="email"
+							 type="email" 
+							 class="form-control"
+							 th:value="${user.email}"
+							id="email_field" 
+							placeholder="Enter Here"
+							required>
+							
+							
+							</div>
+							
+							
+							<!-- password Field -->
+							<div class="mb-3">
+							
+							<label for="passwordl_field" >Password</label>
+							
+							 <input 
+							 name="password"
+							 type="password" 
+							 class="form-control"
+							id="passwordl_field" 
+							placeholder="Enter Here"
+							required>
+							
+							
+							</div>
+							
+							
+							<!-- About Field -->
+							<div class="form-group">
+							
+							<textarea name="about" th:text="${user.about}"  placeholder="Enter someting yourself" rows="6" class="form-control"></textarea>
+							</div>
+
+
+						
+							<!-- Therms and condition aggrement -->
+							<div class="form-group form-check " >
+							<input type="checkbox"
+							name="agreement"
+							class="form-check-input"
+							
+							id="agreement" />
+							
+							<label for="agreement"> Accept term and Condition</label>
+							
+							
+							
+							</div>
+							
+							
+							 <div class="container text-center mt-2">
+						 	<button type="submit" class="btn bg-primary text-white">submit</button>
+							<button type="reset" class="btn btn-warning">Reset</button>
+							
+							</div>
+							
+  
+						</form>
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+
+		</div>
+
+
+	</section>
+</body>
+</html>

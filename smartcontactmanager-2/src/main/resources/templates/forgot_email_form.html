@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}">
+<head>
+	<meta charset="UTF-8" />
+	<title>about page</title>
+</head>
+<body>
+	<section >
+	<div class="container">
+		<div class="email row">
+		<div class="col-md">
+			<div class="card">
+				<div class="card-body">
+					
+					<div th:if="${session.message}" class="container">
+						<div class="alert alert-danger my-2 text-center" role="alert">
+							<span th:text="${session.message}"></span>
+						</div>
+						
+					</div>
+					
+					<h1 class="text-center m-3"> Your Registered Email</h1>
+				<form th:action="@{/send-otp}" method="post">
+					
+					<div class="form-group my-3">
+						<input required name="email"  type="email" class="form-control" placeholder="Enter Email"/>
+					</div>
+					
+					
+					
+					
+					<div class="container text-center">
+						<button type="submit" class="btn btn-warning">Send otp</button>
+					</div>
+					
+					</form>
+				</div>
+				
+				
+			</div>
+			
+			
+		</div>
+			
+			
+		</div>
+		
+	</div>
+</section>
+</body>
+</html>
